@@ -1,18 +1,18 @@
-import { useState } from "react";
-import Head from 'next/head'
-import styles from '../../styles/games/Zombiedice.module.css'
-import dynamic from 'next/dynamic'
+import Head from 'next/head';
+import React from 'react';
 
-const Dice = dynamic(() => import('../../components/common/Dice'))
+import { useDie, useDice } from '../../components/common/Dice';
+import styles from '../../styles/games/Zombiedice.module.css';
 
-let dice;
-let roll = () => {
-  console.log("dice", dice);
-  dice && dice.retry();
-}
+export default function ZombieDice() {
+  const [{ value }, { roll }, Die] = useDie();
+  const [{ values }, { roll: rollCollection }, Dice] = useDice({ amount: 6 });
+  const sum = values.reduce((memo, it) => memo + parseInt(it, 10), 0);
 
-export default function Home() {
-console.log("roll", roll)
+  const die1 = useDie();
+  const die2 = useDie({values: ["A", "B", "C"], value: "A"});
+  const [_, { roll: rollCollection2 }, Dice2] = useDice({dice: [die1, die2]});
+
   return (
     <div className={styles.container}>
       <Head>
@@ -22,17 +22,28 @@ console.log("roll", roll)
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Zombie Dice
+          Zombie Dice (
+          {value}
+          )
         </h1>
 
         <button onClick={roll}>roll</button>
-        <Dice
-          numDice={2}
-          rollDone={(num) => console.log("rolled " + num)}
-          ref={d => dice = d}
-        />
+        <Die />
 
+        <h2>Dice Collection({sum})</h2>
+
+        <button onClick={rollCollection}>roll</button>
+        <div className={styles.dice}>
+          <Dice />
+        </div>
+
+        <h2>Dice Collection2</h2>
+
+        <button onClick={rollCollection2}>roll</button>
+        <div className={styles.dice}>
+          <Dice2 />
+        </div>
       </main>
     </div>
-  )
+  );
 }
