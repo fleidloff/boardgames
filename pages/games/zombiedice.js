@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
 
-import { useDie, useDice } from '../../components/common/Dice';
+import { useDice, useDie } from '../../components/common/Dice';
 import styles from '../../styles/games/Zombiedice.module.css';
 
 export default function ZombieDice() {
@@ -10,8 +10,8 @@ export default function ZombieDice() {
   const sum = values.reduce((memo, it) => memo + parseInt(it, 10), 0);
 
   const die1 = useDie();
-  const die2 = useDie({values: ["A", "B", "C"], value: "A"});
-  const [_, { roll: rollCollection2 }, Dice2] = useDice({dice: [die1, die2]});
+  const die2 = useDie({ values: ['A', 'B', 'C'], value: 'A' });
+  const [_, { roll: rollCollection2 }, Dice2] = useDice({ dice: [die1, die2] });
 
   return (
     <div className={styles.container}>
@@ -30,7 +30,11 @@ export default function ZombieDice() {
         <button onClick={roll}>roll</button>
         <Die />
 
-        <h2>Dice Collection({sum})</h2>
+        <h2>
+          Dice Collection(
+          {sum}
+          )
+        </h2>
 
         <button onClick={rollCollection}>roll</button>
         <div className={styles.dice}>

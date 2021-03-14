@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37b72f51-2c34-45fb-8731-6b4f6d84d8d4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/components/common/Dice.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/common/Dice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/games/zombiedice.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/games/zombiedice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1615668808340</updated>
       <workItem from="1615668811587" duration="2703000" />
-      <workItem from="1615723088026" duration="4173000" />
+      <workItem from="1615723088026" duration="4641000" />
     </task>
     <servers />
   </component>
