@@ -34,18 +34,17 @@ export function useDie({ value = '0', values = VALUES, style } = {}) {
 export function useDice({
   amount = 1, value: externalValue, values: externalValues, dice: externalDice, style,
 } = {}) {
-  const dice = externalDice || Array(5).fill({}).map(() => useDie({ value: externalValue, values: externalValues, style }));
+  const dice = externalDice || Array(amount).fill({})
+    .map(() => useDie({
+      value: externalValue,
+      values: externalValues,
+      style,
+    }));
 
-  function ConnectedDice() {
-    return (
-      <>
-        {dice.map(([state, actions, DieComponent], i) => <DieComponent key={i} />)}
-      </>
-    );
-  }
   function roll() {
-    dice.forEach(([_, { roll: rollDie }]) => rollDie());
+    dice.forEach(([, { roll: rollDie }]) => rollDie());
   }
+
   const values = dice.map(([{ value }]) => value);
-  return [{ values }, { roll }, ConnectedDice];
+  return [{ values, elements: dice }, { roll }];
 }

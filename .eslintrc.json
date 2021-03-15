@@ -52,6 +52,7 @@
     "sort-imports": ["error", { "ignoreDeclarationSort": true }],
     "no-underscore-dangle": "off",
     "react/button-has-type": "off",
+    "react/no-array-index-key": "off",
     "no-multiple-empty-lines": ["error", { "max": 1 }],
     "react/jsx-sort-props": ["error", {
       "callbacksLast": true,
