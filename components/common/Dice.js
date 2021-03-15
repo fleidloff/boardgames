@@ -7,15 +7,15 @@ export const STATES = {
   ROLLING: 'ROLLING',
 };
 
-export default function Die({ value = '0' } = {}) {
+export default function Die({ value = '0', style } = {}) {
   return (
-    <div className={styles.die}>
+    <div className={styles.die} style={style}>
       {value === STATES.ROLLING ? '...' : value}
     </div>
   );
 }
 
-export function useDie({ value = '0', values = VALUES } = {}) {
+export function useDie({ value = '0', values = VALUES, style } = {}) {
   const [dieValue, setValue] = useState(value || values[0]);
   let timeout;
   function roll() {
@@ -25,21 +25,21 @@ export function useDie({ value = '0', values = VALUES } = {}) {
   }
 
   function ConnectedDie() {
-    return <Die value={dieValue} />;
+    return <Die value={dieValue} style={style} />;
   }
 
   return [{ value: dieValue }, { roll }, ConnectedDie];
 }
 
 export function useDice({
-  amount = 1, value: externalValue, values: externalValues, dice: externalDice,
+  amount = 1, value: externalValue, values: externalValues, dice: externalDice, style,
 } = {}) {
-  const dice = externalDice || Array(5).fill({}).map(() => useDie({ value: externalValue, values: externalValues }));
+  const dice = externalDice || Array(5).fill({}).map(() => useDie({ value: externalValue, values: externalValues, style }));
 
   function ConnectedDice() {
     return (
       <>
-        {dice.map(([{ value }, _, DieComponent], i) => <DieComponent key={i} value={value} />)}
+        {dice.map(([state, actions, DieComponent], i) => <DieComponent key={i} />)}
       </>
     );
   }

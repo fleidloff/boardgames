@@ -10,7 +10,7 @@ export default function ZombieDice() {
   const sum = values.reduce((memo, it) => memo + parseInt(it, 10), 0);
 
   const die1 = useDie();
-  const die2 = useDie({ values: ['A', 'B', 'C'], value: 'A' });
+  const die2 = useDie({ values: ['A', 'B', 'C'], value: 'A', style: { color: "blue", backgroundColor: "red"} });
   const [_, { roll: rollCollection2 }, Dice2] = useDice({ dice: [die1, die2] });
 
   return (
@@ -46,6 +46,9 @@ export default function ZombieDice() {
         <button onClick={rollCollection2}>roll</button>
         <div className={styles.dice}>
           <Dice2 />
+        </div>
+        <div className={styles.dice}>
+          {[die1, die2].map(([s, v, Die], i) => <Die key={i}/>)}
         </div>
       </main>
     </div>
